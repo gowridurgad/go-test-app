@@ -19,13 +19,13 @@ jobs:
           go-version: 1.20
 
       - name: Build the application
-        run: go build -o main ./
+        run: go build -v ./...
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: golang-app
-          path: ./main
+          path: ./
 
   publish:
     needs: build
@@ -41,7 +41,7 @@ jobs:
       - name: Publish to GitHub Packages
         uses: actions/upload-package@v2
         with:
-          package-path: ./main
+          package-path: ./
           package-type: go
           token: ${{ secrets.GITHUB_TOKEN }}
           allow-prerelease: true
