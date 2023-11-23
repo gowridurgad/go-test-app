@@ -38,10 +38,7 @@ jobs:
           name: golang-app
           path: ./
 
-      - name: Publish to GitHub Packages
-        uses: actions/upload-package@v2
+      - name: Publish 
+        uses: goreleaser/goreleaser-action@v2
         with:
-          package-path: ./
-          package-type: go
-          token: ${{ secrets.GO_TOKEN }}
-          allow-prerelease: true
+           args: release --rm-dist
