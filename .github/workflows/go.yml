@@ -43,5 +43,5 @@ jobs:
         with:
           package-path: ./
           package-type: go
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GO_TOKEN }}
           allow-prerelease: true
