@@ -34,7 +34,7 @@ func todoHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
-func addHandler(w http.ResponseWriter, r *http.Request) {
+func addHandler1(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
