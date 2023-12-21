@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 env:
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-  HOME: /home/runner/work/
+  HOME: $(Runner.Workspace)
 jobs:
 
   build:
