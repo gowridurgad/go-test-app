@@ -1,30 +1,24 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+name: CI
 
-name: Reproduce Error-448
+env:
+  GITHUB_REPOSITORY_NAME: ci-cd-utils
+  HOME: /home/runner/work/
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "main" ]
-env:
-  GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-  HOME: $(Runner.Workspace)
+    branches: [ master ]
+
 jobs:
-
   build:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
-    - uses: actions/checkout@main
-
-    - name: Set up Go
-      uses: actions/setup-go@main
+    - name: Use Go stable version
+      uses: actions/setup-go@v2
       with:
-        go-version: 'stable'
-
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+        go-version: stable
+        
