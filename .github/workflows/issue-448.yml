@@ -2,7 +2,7 @@ name: CI
 
 env:
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-  HOME: /github/worksapce/work/
+  HOME: /home/runner/work/
 
 on:
   push:
@@ -19,5 +19,5 @@ jobs:
     - name: Use Go stable version
       uses: actions/setup-go@main
       with:
-        go-version: stable
+        go-version: 'stable'
         
