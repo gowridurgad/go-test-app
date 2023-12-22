@@ -2,7 +2,8 @@ name: CI
 
 env:
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-  HOME: /home/runner/work/
+  HOME: ${{ runner.workspace }}
+
 
 on:
   push:
