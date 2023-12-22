@@ -2,23 +2,25 @@ name: CI
 
 env:
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-  HOME: ${{ runner.workspace }}
-
 
 on:
   push:
     branches: [ main ]
- 
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Set HOME environment variable
+      run: echo "HOME=$(echo $GITHUB_WORKSPACE)" >> $GITHUB_ENV
+
     - name: Use Go stable version
       uses: actions/setup-go@main
       with:
         go-version: 'stable'
-        
