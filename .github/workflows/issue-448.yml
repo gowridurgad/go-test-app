@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@main
 
     # - name: Set HOME environment variable
     #   run: echo "HOME=$(echo $GITHUB_WORKSPACE)" >> $GITHUB_ENV
