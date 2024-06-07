@@ -1,0 +1,24 @@
+﻿name: Go Workflow
+
+on:
+  push:
+    branches: [ 476-Test ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.22.x  # replace with your desired Go version
+        cache: true
+        cache-dependency-path: |
+          **/go.mod
+          **/go.sum
+
+    - name: Check Go version
+      run: go version
