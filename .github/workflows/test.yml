@@ -1,8 +1,7 @@
 ﻿name: Go Workflow
 
 on:
-  push:
-    branches: [ 476-Test ]
+  workflow_dispatch:
 
 jobs:
   build:
