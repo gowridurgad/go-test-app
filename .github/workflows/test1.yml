@@ -9,13 +9,14 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Restore cache
+    - name: Cache Go modules
       uses: actions/cache@v2
       with:
         path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-
+           setup-go-Linux-ubuntu22-go-1.22.4-d25bb060a288fb0acfb0715e613da6ab0861566d422d601bf2e3541cfaa3798f
+           ${{ runner.os }}-go-
 
     - name: Set up Go
       uses: actions/setup-go@v2
