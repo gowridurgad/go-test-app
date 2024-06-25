@@ -1,4 +1,4 @@
-﻿name: Go Workflow
+﻿name: Go Workflow1
 
 on:
   workflow_dispatch:
