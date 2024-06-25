@@ -18,7 +18,6 @@ jobs:
         go-version: 1.22.x  # replace with your desired Go version
         cache: true
         cache-dependency-path: |
-          **/go.mod
           **/go.sum
 
     - name: Check Go version
