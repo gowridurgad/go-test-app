@@ -1,10 +1,7 @@
 ﻿name: Go Workflow
 
 on:
-  push:
-    branches:
-      - main
-      - 'feature/**'
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
