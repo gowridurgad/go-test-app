@@ -1,7 +1,9 @@
-name: Go Build & Test
+name: build
 
 on:
-  workflow_dispatch:
+   push:
+      branches: [ main, feature ]
+  
 
 jobs:
 
