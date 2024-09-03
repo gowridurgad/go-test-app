@@ -16,6 +16,10 @@ jobs:
           go-version-file: go.mod
           cache: true
           cache-dependency-path: go.sum
+      - name: Print Go cache directory
+        run: |
+           echo "Go module cache directory is: $(go env GOMODCACHE)"
+           echo "Go build cache directory is: $(go env GOCACHE)"
       - uses: golangci/golangci-lint-action@v5
         with:
           version: v1.54
