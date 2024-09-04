@@ -1,6 +1,6 @@
 module github.com/Kathiravankrish/go-test-app
 
-go 1.24.0
+go 1.22.6
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect
