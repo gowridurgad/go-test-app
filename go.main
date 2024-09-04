@@ -4,6 +4,7 @@ import (
     "html/template"
     "log"
     "net/http"
+    "os"
     "strconv"
 )
 
@@ -40,7 +41,7 @@ func addHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    newTask := r.FormValue("newTask")
+    newTask := template.HTMLEscapeString(r.FormValue("newTask"))
     if newTask != "" {
         todos = append(todos, Todo{Item: newTask, Done: false})
     }
@@ -59,7 +60,7 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Invalid task index", http.StatusBadRequest)
         return
     }
-    updatedTask := r.FormValue("updateTask")
+    updatedTask := template.HTMLEscapeString(r.FormValue("updateTask"))
     done := r.FormValue("done") == "on"
     todos[index].Item = updatedTask
     todos[index].Done = done
@@ -82,9 +83,18 @@ func main() {
         {Item: "Install GO", Done: true},
         {Item: "Learn Go", Done: false},
     }
-    mux := http.NewServeMux()
-    tmpl = template.Must(template.ParseFiles("templates/index.gohtml"))
+    tmpl, err := template.ParseFiles("templates/index.gohtml")
+    if err != nil {
+        log.Fatalf("Failed to parse template: %v", err)
+    }
+
     fs := http.FileServer(http.Dir("./static"))
+    _, err = os.Stat("./static")
+    if os.IsNotExist(err) {
+        log.Fatalf("Static directory does not exist.")
+    }
+
+    mux := http.NewServeMux()
     mux.Handle("/static/", http.StripPrefix("/static/", fs))
     mux.HandleFunc("/todo", todoHandler)
     mux.HandleFunc("/add", addHandler)
