@@ -3,10 +3,15 @@ package main
 import (
     "fmt"
     "net/http"
+    "sync"
 )
+
+var mu sync.Mutex
 
 func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        mu.Lock() // Lock the mutex
+        defer mu.Unlock() // Ensure the mutex is unlocked after handling the request
         fmt.Fprintf(w, "Hello, World!")
     })
 
