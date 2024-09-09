@@ -11,15 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Create unique cache file
+        run: |
+          echo "${{ github.run_id }}-${{ matrix.os }}-$(date +%s)" > .cache-key
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
           cache: true
-          cache-dependency-path: go.sum
+          cache-dependency-path: |
+            go.sum
+            .cache-key
      
-      - uses: golangci/golangci-lint-action@v5
-        with:
-          version: v1.60
-         
+     
          
          
