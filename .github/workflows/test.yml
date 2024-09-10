@@ -1,9 +1,7 @@
 name: golangci-lint
 
 on:
- workflow_dispatch:
-
-
+  workflow_dispatch:
 
 jobs:
   golangci:
@@ -12,13 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Clean up cache directories
+        run: |
+          rm -rf ~/go/pkg/mod/golang.org/x/telemetry
+          rm -rf ~/.cache/go-build
+      
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
           cache: true
           cache-dependency-path: |
             go.sum
-            
-     
      
          
