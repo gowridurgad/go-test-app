@@ -10,12 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Restore cache with override
-        run: tar --overwrite -xf /home/runner/work/_temp/cache.tzst -P -C /home/runner/work/go-test-app/go-test-app --use-compress-program unzstd
-      
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
           cache: true
           cache-dependency-path: |
-            go.sum 
+            go.sum
+      
+      - name: Disable Go Telemetry
+        run: go telemetry off
+    
