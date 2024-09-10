@@ -1,9 +1,7 @@
 name: golangci-lint
 
 on:
- workflow_dispatch:
-
-
+  workflow_dispatch:
 
 jobs:
   golangci:
@@ -11,17 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create unique cache file
-        run: |
-          echo "${{ github.run_id }}-${{ matrix.os }}" > .cache-key
-      - uses: actions/setup-go@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
-          cache: true
-          cache-dependency-path: |
-            go.sum
-            .cache-key
-     
-     
-         
-         
+
+      - name: Cache Go modules
+        id: cache-go-mod
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+  
