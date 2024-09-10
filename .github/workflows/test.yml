@@ -10,15 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Clean up cache directories
-        run: |
-          rm -rf ~/go/pkg/mod/golang.org/x/telemetry
-          rm -rf ~/.cache/go-build
-
-      - name: Verify cleanup
-        run: |
-          ls -la ~/go/pkg/mod/golang.org/x/telemetry
-          ls -la ~/.cache/go-build
+      - name: Restore cache with override
+        run: tar --overwrite -xf /home/runner/work/_temp/cache.tzst -P -C /home/runner/work/go-test-app/go-test-app --use-compress-program unzstd
       
       - uses: actions/setup-go@v5
         with:
