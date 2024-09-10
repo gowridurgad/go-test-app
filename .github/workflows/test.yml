@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Disable Go Telemetry
+        run: go telemetry off
       
       - uses: actions/setup-go@v5
         with:
@@ -17,6 +19,5 @@ jobs:
           cache-dependency-path: |
             go.sum
       
-      - name: Disable Go Telemetry
-        run: go telemetry off
+    
     
