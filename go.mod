@@ -1,4 +1,4 @@
-module github.com/Kathiravankrish/go-test-app
+module github.com/gowridurgad/go-test-app
 
 go 1.22
 
