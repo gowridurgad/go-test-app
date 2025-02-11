@@ -1,0 +1,17 @@
+name: issue1207
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  setup-node:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        go-version-file: 'go.mod'
+        check-latest: true
+        cache: true
