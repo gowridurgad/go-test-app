@@ -1,4 +1,4 @@
-name: issue1207
+name: issue552
 
 on: 
   workflow_dispatch:
@@ -14,4 +14,4 @@ jobs:
       with:
         go-version-file: 'go.mod'
         check-latest: true
-        cache: true
+   
