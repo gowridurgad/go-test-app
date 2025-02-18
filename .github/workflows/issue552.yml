@@ -49,10 +49,12 @@ jobs:
              const extractedPath = await tc.extractTar(tarPath);
              core.info(`Extracted to: ${extractedPath}`);
              const items = fs.readdirSync(extractedPath);
+             core.info(`Items found: ${items}`);
              if (items.length === 0) {
                 throw new Error("No directories found inside the tarball");
              }
              const folder = items.find(item => fs.lstatSync(path.join(extractedPath, item)).isDirectory());
+             core.info(`Folder found: ${folder}`);
              if (!folder) {
                  throw new Error("No directories found inside the tarball");
              }
@@ -71,7 +73,6 @@ jobs:
             echo "LD_LIBRARY_PATH=$PCRE2_PATH/build:$LD_LIBRARY_PATH" >> $GITHUB_ENV
           elif [[ $RUNNER_OS == 'macOS' ]]; then
             echo "DYLD_LIBRARY_PATH=$PCRE2_PATH/build:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
-          fi
       - name: Build PCRE2 on Windows
         if: runner.os == 'Windows'
         working-directory: ${{ steps.download_pcre2.outputs.result }}
