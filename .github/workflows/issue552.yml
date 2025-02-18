@@ -20,6 +20,12 @@ jobs:
           node-version: '20.x'
       - run: npm install @actions/tool-cache
 
+      - name: Install PowerShell
+        if: runner.os == 'Windows'
+        run: |
+          choco install powershell -y
+          refreshenv
+
       - name: Get latest PCRE2 release
         id: pcre2_release
         uses: actions/github-script@v7
@@ -63,6 +69,7 @@ jobs:
              fs.renameSync(oldPath, newPath);
              core.info(`Renamed folder to: ${newPath}`);
              return newPath;
+
       - name: Build PCRE2 on Linux/macOS
         if: runner.os == 'Linux' || runner.os == 'macOS'
         working-directory: ${{ steps.download_pcre2.outputs.result }}
@@ -73,6 +80,7 @@ jobs:
             echo "LD_LIBRARY_PATH=$PCRE2_PATH/build:$LD_LIBRARY_PATH" >> $GITHUB_ENV
           elif [[ $RUNNER_OS == 'macOS' ]]; then
             echo "DYLD_LIBRARY_PATH=$PCRE2_PATH/build:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
+
       - name: Build PCRE2 on Windows
         if: runner.os == 'Windows'
         working-directory: ${{ steps.download_pcre2.outputs.result }}
@@ -83,6 +91,7 @@ jobs:
           cmake --build build/
           $env:PATH = "$(Get-Location)\build;" + $env:PATH
           Write-Output "PATH=$(Get-Location)\build" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
