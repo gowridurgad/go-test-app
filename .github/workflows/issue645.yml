@@ -1,0 +1,21 @@
+name: issue #645
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: 1.25.1
+          cache: true
+
+      - name: Install Dependencies
+        run: |
+          go mod download
