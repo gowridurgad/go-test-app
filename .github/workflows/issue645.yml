@@ -17,6 +17,4 @@ jobs:
           architecture: 'arm64'
           cache: true
 
-      - name: Install Dependencies
-        run: |
-          go mod download
+      
