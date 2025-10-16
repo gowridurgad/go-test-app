@@ -14,7 +14,7 @@ jobs:
         uses: gowridurgad/setup-go@errorhandling-arch
         with:
           go-version: 1.25.1
-          architecture: 'x64'
+          architecture: '360'
  
 
       
