@@ -1,0 +1,24 @@
+name: workloads-523
+on: 
+  workflow_dispatch:
+
+jobs:
+  dotnet-install-matrix:
+    runs-on: self-hosted
+    # strategy:
+    #   matrix:
+    #     os: [windows-latest, macos-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: gowridurgad/setup-dotnet@523-feature
+        with:
+          dotnet-version: '9.0.x'
+          workloads: wasm-tools
+          
+      
+      - name: Show installed workloads
+        run: dotnet workload list
