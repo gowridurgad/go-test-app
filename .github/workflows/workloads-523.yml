@@ -13,11 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET 8
-        uses: gowridurgad/setup-dotnet@523-feature
+      - name: Setup .NET 10
+        uses: gowridurgad/setup-dotnet@workloads-input
         with:
-          dotnet-version: '9.0.x'
-          workloads: maui
+          dotnet-version: '10.0.x'
+          workloads: aspire
           
       
       - name: Show installed workloads
