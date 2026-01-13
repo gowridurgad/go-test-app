@@ -18,6 +18,11 @@ jobs:
         with:
           dotnet-version: '9.0.x'
           workloads: maui
+
+      - name: workloads clean
+        run: dotnet workload clean
+
+        
           
       
       - name: Show installed workloads
