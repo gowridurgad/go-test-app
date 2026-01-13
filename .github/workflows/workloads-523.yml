@@ -20,7 +20,7 @@ jobs:
           workloads: maui
 
       - name: workloads clean
-        run: dotnet workload clean
+        run: sudo dotnet workload uninstall android aspire maui maui-windows
 
         
           
