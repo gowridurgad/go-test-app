@@ -17,7 +17,7 @@ jobs:
         uses: gowridurgad/setup-dotnet@workloads-input
         with:
           dotnet-version: '9.0.x'
-          workloads: aspire
+          workloads: maui-windows
           
       
       - name: Show installed workloads
