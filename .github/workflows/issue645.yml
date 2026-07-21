@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         
       - name: Setup Go
-        uses: gowridurgad/setup-go@errorhandling-arch
+        uses: actions/setup-go@v6
         with:
           go-version: '1.18.0-rc.1'
           architecture: 'ppc64'
