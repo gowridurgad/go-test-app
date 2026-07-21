@@ -14,5 +14,5 @@ jobs:
         # uses:  adilhusain-s/setup-node@ppc64le
         uses:  actions/setup-node@v7
         with:
-          node-version: '26.5.0'
+          node-version: '26.4.0'
           architecture: 'ppc64'
