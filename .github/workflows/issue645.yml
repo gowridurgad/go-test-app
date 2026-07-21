@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v6
         
       - name: Setup Go
-        uses:  shahidhs-ibm/setup-go@ppc64le  
+        uses:  gowridurgad/setup-go@testing-ppc64
         with:
           go-version: '1.24.x'
           architecture: 'ppc64le'
