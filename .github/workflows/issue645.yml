@@ -10,12 +10,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         
-      - name: Setup node
-        uses:  adilhusain-s/setup-node@ppc64le
+      - name: Setup Go
+        uses:  shahidhs-ibm/setup-go@ppc64le  
         with:
-          node-version: '26.5.0'
+          go-version: '1.25.x'
           architecture: 'ppc64le'
           
- 
-
-      
