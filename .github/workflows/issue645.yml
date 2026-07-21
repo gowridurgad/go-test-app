@@ -13,6 +13,6 @@ jobs:
       - name: Setup Go
         uses:  shahidhs-ibm/setup-go@ppc64le  
         with:
-          go-version: '1.25.x'
+          go-version: '1.24.x'
           architecture: 'ppc64le'
           
