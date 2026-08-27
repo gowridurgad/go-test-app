@@ -1,6 +1,6 @@
 module github.com/gowridurgad/go-test-app
 
-go 1.18
+go 1.18.7
 
 require (
     // Example dependencies:
