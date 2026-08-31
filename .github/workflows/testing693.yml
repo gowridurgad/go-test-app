@@ -6,9 +6,9 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['stable', ''] # empty string to fall back on go-version-file
+    # strategy:
+    #   matrix:
+    #     go-version: ['stable', ''] # empty string to fall back on go-version-file
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -16,6 +16,6 @@ jobs:
       - name: Setup Go
         uses:  actions/setup-go@v7
         with:
-          go-version: ${{ matrix.go-version }}
+          # go-version: ${{ matrix.go-version }}
           go-version-file: "go.mod" # this one is only used when go-version is not specified.
           
